@@ -1,0 +1,18 @@
+<h1>Search founders</h1>
+<%= link_to 'Companies', companies_path %> 
+
+<table>
+
+  <tr>
+    <th>Role</th>
+    <th></th>
+  </tr>
+  
+  <% @founders.each do |founder| %>
+    <tr>
+      <td><%= founder.user.role %></td>
+      <td><%= link_to 'Show', "search/founders/#{founder.id}" %></td>
+    </tr>
+  <% end %>
+
+</table>

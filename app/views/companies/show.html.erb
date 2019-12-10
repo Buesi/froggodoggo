@@ -1,0 +1,40 @@
+<h1>Company</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.user.name %>
+  <%= @company.user.surname %>
+</p>
+ 
+<p>
+  <strong>email:</strong>
+  <%= @company.user.email %>
+</p>
+
+<p>
+  <strong>password:</strong>
+  <%= @company.user.password %>
+</p>
+
+<p>
+  <strong>role:</strong>
+  <%= @company.user.role %>
+</p>
+
+<p>
+  <strong>company:</strong>
+  <%= @company.company %>
+</p>
+
+<p>
+  <strong>website:</strong>
+  <%= @company.website %>
+</p>
+
+<p>
+  <strong>member since:</strong>
+  <%= @company.user.created_at %>
+</p>
+
+
+<%= link_to 'Back', companies_path %>

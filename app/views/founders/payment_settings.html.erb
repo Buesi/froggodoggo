@@ -1,0 +1,15 @@
+<h1>Payment Settings</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @founder.user.name %>
+  <%= @founder.user.surname %>
+</p>
+ 
+<p>
+  <strong>Banking Information</strong>
+<!--   <%= @founder.user.password %> -->
+</p>
+
+<td><%= link_to 'Edit Payment Settings', "/founders/#{@founder.id}/edit_payment_settings" %></td>
+<td><%= link_to 'Back', "/founders/#{@founder.id}/payment_overview" %></td>

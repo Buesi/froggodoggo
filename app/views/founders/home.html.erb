@@ -1,0 +1,11 @@
+<h1>Founder</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @founder.user.name %>
+  <%= @founder.user.surname %>
+</p>
+ 
+<td><%= link_to 'Show Profile', "/founders/#{@founder.id}/show_profile" %></td>
+<td><%= link_to 'Payment Overview', "/founders/#{@founder.id}/payment_overview" %></td>
+<td><%= link_to 'Destroy', founder_path(:id), method: :delete, data: { confirm: 'Are you sure?' } %></td>

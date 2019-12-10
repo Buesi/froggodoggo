@@ -1,0 +1,26 @@
+<h1>Contact Founder</h1>
+
+<p>The successful introduction to a founder costs $300 on Froggodoggo. The amount will be reserved on your card if you proceed. Once you switch the status of your connection to this founder to "hired", the amount will be deduced from your card. However, if you decide not to hire this founder, update the status as "not hired" and we won't charge your card.</p>
+
+<button id='paymentButton'>Pay</button>
+<%= link_to 'Back', "search" %>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script> 
+  document.addEventListener('click', function (event) {
+  if (event.target.matches('#paymentButton')) {
+    var stripe = Stripe("<%= Rails.configuration.stripe[:publishable_key] %>");
+
+    stripe.redirectToCheckout({
+      sessionId: "<%= @session.id %>"
+    }).then(function(result){
+      //to do: handle error
+    });
+  }
+
+}, false);
+
+
+</script>
+

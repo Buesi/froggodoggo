@@ -1,0 +1,36 @@
+<nav class="flex-container-1">
+  <div class="center-image">
+    <a href="/">
+      <%= image_tag post.images.fd_test_v1_5_4.png %>
+    </a>
+  </div>
+
+  <div class="flex-container-3" id="navBigScreen">
+    <div class="">
+      {{ range .Site.Menus.main }}
+        <a href={{ .URL }} class="flex-container-5">
+          {{ .Title }}
+        </a>
+        
+      {{ end }}
+    </div>   
+  </div>
+
+    <div id="openMenu">
+      <div class="burger"></div>
+      <div class="burger"></div>
+      <div class="burger"></div>
+    </div>
+
+    <div id="menuContainer">
+      <div class="flex-container-20">
+        <span class="flex-container-21" id="closeMenu">x</span>
+        {{ range .Site.Menus.main }}
+          <a href={{ .URL }} class="flex-container-5">
+            {{ .Title }}
+          </a>
+          
+        {{ end }}
+      </div>   
+    </div>
+</nav>

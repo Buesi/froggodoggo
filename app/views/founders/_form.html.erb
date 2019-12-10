@@ -1,0 +1,63 @@
+<%= form_with model: @founder, local: true do |form| %>
+ 
+  <% if @founder.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@founder.errors.count, "error") %> prohibited
+        this founder from being saved:
+      </h2>
+      <ul>
+        <% @founder.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :company %><br>
+    <%= form.text_field :company %>
+  </p> 
+
+  <p>
+    <%= form.label :website %><br>
+    <%= form.text_field :website %>
+  </p> 
+
+  <p>
+    <%= form.label :github %><br>
+    <%= form.text_field :github %>
+  </p> 
+
+  <%= form.fields_for :user do |user_field| %>
+    <p>
+      <%= user_field.label :name %><br>
+      <%= user_field.text_field :name %>
+    </p>
+
+    <p>
+      <%= user_field.label :surname %><br>
+      <%= user_field.text_field :surname %>
+    </p>
+
+    <p>
+      <%= user_field.label :email %><br>
+      <%= user_field.text_field :email %>
+    </p>
+
+    <p>
+      <%= user_field.label :password %><br>
+      <%= user_field.text_field :password %>
+    </p> 
+
+    <p>
+      <%= user_field.label :role %><br>
+      <%= user_field.text_field :role %>
+    </p>
+  <% end %>
+
+  <p>
+    <%= form.submit %>
+  </p> 
+
+<% end %>

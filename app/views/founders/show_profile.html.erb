@@ -1,0 +1,45 @@
+<h1>Founder</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @founder.user.name %>
+  <%= @founder.user.surname %>
+</p>
+ 
+<p>
+  <strong>email:</strong>
+  <%= @founder.user.email %>
+</p>
+
+<p>
+  <strong>password:</strong>
+  <%= @founder.user.password %>
+</p>
+
+<p>
+  <strong>role:</strong>
+  <%= @founder.user.role %>
+</p>
+
+<p>
+  <strong>company:</strong>
+  <%= @founder.company %>
+</p>
+
+<p>
+  <strong>website:</strong>
+  <%= @founder.website %>
+</p>
+
+<p>
+  <strong>github:</strong>
+  <%= @founder.github %>
+</p>
+
+<p>
+  <strong>member since:</strong>
+  <%= @founder.user.created_at %>
+</p>
+
+<td><%= link_to 'Edit Profile', edit_founder_path %></td>
+<td><%= link_to 'Back', "/founders/#{@founder.id}/home" %></td>
