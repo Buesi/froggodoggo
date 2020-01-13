@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_one :founder
+  has_one :company
+  
+  belongs_to :profile_picture
+  accepts_nested_attributes_for :profile_picture
 
-  validates :name, presence: true, length: { minimum: 2 }
-  validates :surname, presence: true, length: { minimum: 2 }
-  validates :email, presence: true, length: { minimum: 2 }
 end

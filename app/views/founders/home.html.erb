@@ -1,11 +1,12 @@
-<h1>Founder</h1>
+<div class="center-image">
+  <%= image_tag @profile_pic.url , :class => 'profile' %>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @founder.user.name %>
-  <%= @founder.user.surname %>
-</p>
- 
-<td><%= link_to 'Show Profile', "/founders/#{@founder.id}/show_profile" %></td>
-<td><%= link_to 'Payment Overview', "/founders/#{@founder.id}/payment_overview" %></td>
-<td><%= link_to 'Destroy', founder_path(:id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<h1>Hi <%= @founder.user.name %></h1>
+<h2>What do you want to do today?</h2>
+
+
+<p><%= link_to 'Your profile', "/founders/profile", class: "link-3" %> || <%= link_to 'Interested companies', "/founders/company_contacts" , class: "link-3" %></p> 
+
+
+

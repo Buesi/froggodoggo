@@ -2,7 +2,7 @@
  
   <% if @company.errors.any? %>
     <div id="error_explanation">
-      <h2>
+      <h2> 
         <%= pluralize(@company.errors.count, "error") %> prohibited
         this company from being saved:
       </h2>
@@ -14,45 +14,47 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :company %><br>
-    <%= form.text_field :company %>
-  </p> 
+  <div class="flex-container-10">
+    <div class="flex-container-9-4">
+      <div class="flex-container-12-1">
 
-  <p>
-    <%= form.label :website %><br>
-    <%= form.text_field :website %>
-  </p> 
+        <%= form.fields_for :user do |user_field| %>
+          <div class="flex-container-form-column">
+            <p><strong>Name:</strong></p>
+            <%= user_field.text_field :name, :class => "form-field"%>
+          </div>
 
-  <%= form.fields_for :user do |user_field| %>
+          <div class="flex-container-form-column">
+            <p><strong>Surname:</strong></p>
+            <%= user_field.text_field :surname, :class => "form-field" %>
+          </div>
+
+          <div class="flex-container-form-column">
+            <p><strong>E-mail:</strong></p>
+            <%= user_field.text_field :email, :class => "form-field" %>
+          </div>
+
+          <%= user_field.hidden_field :id, :value => @company.user.id %>   
+
+        <% end %>
+
+        <div class="flex-container-form-column">
+          <p><strong>Company:</strong></p>
+          <%= form.text_field :company, :class => "form-field" %>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>Website:</strong></p>
+          <%= form.text_field :website, :class => "form-field" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-container-18">
     <p>
-      <%= user_field.label :name %><br>
-      <%= user_field.text_field :name %>
+      <%= form.submit 'Save', :class => 'button' %>
     </p>
-
-    <p>
-      <%= user_field.label :surname %><br>
-      <%= user_field.text_field :surname %>
-    </p>
-
-    <p>
-      <%= user_field.label :email %><br>
-      <%= user_field.text_field :email %>
-    </p>
-
-    <p>
-      <%= user_field.label :password %><br>
-      <%= user_field.text_field :password %>
-    </p> 
-
-    <p>
-      <%= user_field.label :role %><br>
-      <%= user_field.text_field :role %>
-    </p>
-  <% end %>
-
-  <p>
-    <%= form.submit %>
-  </p> 
+  </div>
 
 <% end %>

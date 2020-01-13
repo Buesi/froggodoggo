@@ -1,0 +1,57 @@
+<%= form_with model: @founder, local: true do |form| %>
+
+  <div class="flex-container-10">
+    <div class="flex-container-9-4">
+      <div class="flex-container-12-1">
+
+        <h2>Create a new founder</h2>
+        <div class="flex-container-form-column">
+
+          <%= form.fields_for :user do |user_field| %>
+            <p><strong>Name:</strong></p>
+            <p><%= user_field.text_field :name, :class => "form-field"%></p>
+
+            <p><strong>Surname:</strong></p>
+            <p><%= user_field.text_field :surname, :class => "form-field" %></p>
+
+            <p><strong>E-mail:</strong></p>
+            <p><%= user_field.text_field :email, :class => "form-field"%></p> 
+
+            <p><strong>Auth0 Id:</strong></p>
+            <p><%= user_field.text_field :auth0_id, :class => "form-field"%></p>
+
+            <p><strong>Profile picture:</strong></p>
+            <p><%= user_field.text_field :profile_picture_id, :class => "form-field"%></p>                            
+
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="flex-container-10">
+    <div class="flex-container-9-4">
+      <div class="flex-container-12-1">
+
+        <h2>Anonymous part</h2>
+
+        <div class="flex-container-form-column">
+          <label class="text-1">Choose a profile picture:</label>
+            <select type="text" name="profile_pic" class="form-field">
+              <option disabled selected value> -- select an option -- </option>
+              <option value="profile_1">Full-stack</option>
+              <option value="profile_2">Front-end</option>
+              <option value="profile_3">Back-end</option>
+            </select>
+        </div>
+
+      </div>
+    </div>
+  </div> -->
+
+  <p>
+    <%= form.submit 'Save', :class => 'button' %>
+  </p> 
+
+<% end %>

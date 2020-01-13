@@ -1,0 +1,103 @@
+<h1>Contacted founders</h1>
+
+<div class="flex-container-10">
+  <div class="flex-container-9-4">
+    <% if @all_contacts.present? %>
+        <div class="flex-container-12-2">
+          <% @all_contacts.each do |contact| %>
+            <div class="flex-container-12-3">
+              <div class="flex-container-center-image">
+                <div><%= image_tag contact.founder.user.profile_picture.url , :class => 'profile-founder-list' %></div>
+              </div>
+
+              <div class="flex-container-12-2">
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Name:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.founder.user.name %> <%= contact.founder.user.surname %></p>
+                  </div>
+                </div>
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>E-mail:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.founder.user.email %></p>
+                  </div>
+                </div>
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Company:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.founder.company %></p>
+                  </div>
+                </div>
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Website:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.founder.website %></p>
+                  </div>
+                </div>
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Contacted:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.created_at.strftime("%d %b. %Y") %></p>
+                  </div>
+                </div>
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Current status:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.hire_status %></p>
+                  </div>
+                </div>
+                
+                <% if contact.hire_status == 'interested' %>
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Update status:</strong></p>
+                  </div>
+                  <div class="p-flex-container">  
+                    <%= form_tag("/companies/#{@company.id}/mark_as_hired") do -%>
+                      <%= hidden_field_tag 'founder_id', contact.founder.id %>
+                      <div><%= submit_tag 'hired', class: "button-status" %></div>
+                    <% end -%>
+                    <div><p>&nbsp; or &nbsp;</p></div>
+                    <%= form_tag("/companies/#{@company.id}/mark_as_not_hired") do -%>
+                      <%= hidden_field_tag 'founder_id', contact.founder.id %>
+                      <div><%= submit_tag 'declined', class: "button-status" %></div>
+                    <% end -%>
+                  </div>
+                </div>
+                <% else%>
+
+                <% end %>
+
+                <div class="p-left-form"><%= link_to '>> Show profile <<', "/founders/#{contact.founder.id}/connected", class: "link-3" %></div>
+
+            </div>
+          </div>
+          <hr color = "white" width="100%" display = block margin = 0 padding = 0>
+        <% end %>
+      </div>
+    <% else %>
+
+      <h2>You didn't contact any foudners yet or declined the ones contacted.</h2>
+      <div class="flex-container-18">  
+        <p><%= link_to 'Hire a founder', "/search", :class => 'button' %></p>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
+<p><%= link_to 'Go back', "/companies/home", class: "link-3" %></p>
+

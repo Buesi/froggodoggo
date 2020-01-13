@@ -1,0 +1,23 @@
+<h1>Choose your profile picture</h1>
+
+<div class="flex-container-2-2">
+  <% @profile_pictures.each do |profile_picture| %>
+    <div class="picture-container">
+      <%= form_tag('/founders/picture') do %>
+        <% if profile_picture.id == @profile_pic.id %>
+          <%= image_tag profile_picture.url , :class => 'profile-current' %>
+          <%= hidden_field_tag 'profile_pic_id', profile_picture.id %>  
+          <%= hidden_field_tag 'founder_id', @founder.id %> 
+          <%= submit_tag 'Your current pic', :class => 'button-profile-current' %>
+        <% else %>
+          <%= image_tag profile_picture.url , :class => 'icon' %>
+          <%= hidden_field_tag 'profile_pic_id', profile_picture.id %>  
+          <%= hidden_field_tag 'founder_id', @founder.id %> 
+          <%= submit_tag 'Choose this', :class => 'button-profile-select' %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+ 
+<p><%= link_to 'Go back', "/founders/profile", class: "link-3" %></p>

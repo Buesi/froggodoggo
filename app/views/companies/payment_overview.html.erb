@@ -1,0 +1,88 @@
+<h1>Payment overview</h1>
+
+<div class="flex-container-10">
+  <div class="flex-container-9-4">
+    <% if @all_contacts.present? %>
+        <div class="flex-container-12-2">
+          <% @all_contacts.each do |contact| %>
+            <div class="flex-container-12-3">
+              <div class="flex-container-center-image">
+                <div><%= image_tag contact.founder.user.profile_picture.url , :class => 'profile-founder-list-small' %></div>
+              </div>
+
+              <div class="flex-container-12-2">
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Name:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.founder.user.name %> <%= contact.founder.user.surname %></p>
+                  </div>
+                </div>
+
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Contacted:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.created_at.strftime("%d %b. %Y") %></p>
+                  </div>
+                </div>
+                <div class="flex-container-show-row">
+                  <div class="p-left-form">
+                    <p><strong>Current status:</strong></p>
+                  </div>
+                  <div class="p-left-show-right">
+                    <p><%= contact.hire_status %></p>
+                  </div>
+                </div>
+                
+                <% if contact.hire_status == 'hired' %>
+                  <div class="flex-container-show-row">
+                    <div class="p-left-form">
+                      <p><strong>Amount:</strong></p>
+                    </div>
+                    <div class="p-left-show-right">
+                      <p> $300 </p>
+                    </div>
+                  </div>
+                <% elsif contact.hire_status == 'declined' %>
+                  <div class="flex-container-show-row">
+                    <div class="p-left-form">
+                      <p><strong>Amount:</strong></p>
+                    </div>
+                    <div class="p-left-show-right">
+                      <p> $0 (reserved amount will be released ASAP) </p>
+                    </div>
+                  </div>                
+                <% else%>
+                  <div class="flex-container-show-row">
+                    <div class="p-left-form">
+                      <p><strong>Amount:</strong></p>
+                    </div>
+                    <div class="p-left-show-right">
+                      <p> $300 (amount reserved until hired or declined) </p>
+                    </div>
+                  </div>
+                <% end %>
+
+                <div class="p-left-form"><%= link_to '>> Show profile <<', "/founders/#{contact.founder.id}/connected", class: "link-3" %></div>
+
+            </div>
+          </div>
+          <hr color = "white" width="100%" display = block margin = 0 padding = 0>
+        <% end %>
+      </div>
+    <% else %>
+
+      <h2>You didn't contact any foudners yet.</h2> 
+      <div class="flex-container-18">  
+        <p><%= link_to 'Hire a founder', "/search", :class => 'button' %></p>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
+<p><%= link_to 'Go back', "/companies/home", class: "link-3" %></p>
+

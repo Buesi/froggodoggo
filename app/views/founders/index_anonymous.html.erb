@@ -1,18 +1,75 @@
 <h1>Search founders</h1>
-<%= link_to 'Companies', companies_path %> 
 
-<table>
+<div class="flex-container-10">
+  <div class="flex-container-9-4">
+          <h2>Sort by</h2>
+          <div class="p-center"><%= link_to 'Speciality', "?sort=specialisation&direc=#{@direc}", class: "link-3" %>
+        || <%= link_to 'Years in software', "?sort=years_in_software&direc=#{@direc}", class: "link-3" %>
+        || <%= link_to 'Availability', "?sort=days_per_week&direc=#{@direc}", class: "link-3" %>
+        || <%= link_to 'Duration', "?sort=duration&direc=#{@direc}", class: "link-3" %></div>
+   
+    <div class="flex-container-12-2">
+      <% @founders.each do |founder| %>
+        <div class="flex-container-12-3">
+          <div class="flex-container-center-image">
+            <div><%= image_tag founder.user.profile_picture.url , :class => 'profile-founder-list' %></div>
+          </div>
+          <div class="flex-container-12-2">
+            <div class="flex-container-show-row">
+              <div class="p-left-form">
+                <p><strong>Speciality:</strong></p>
+              </div>
+              <div class="p-left-show-right">
+                <p><%= founder.specialisation_formatted %></p>
+              </div>
+            </div>
 
-  <tr>
-    <th>Role</th>
-    <th></th>
-  </tr>
-  
-  <% @founders.each do |founder| %>
-    <tr>
-      <td><%= founder.user.role %></td>
-      <td><%= link_to 'Show', "search/founders/#{founder.id}" %></td>
-    </tr>
-  <% end %>
+            <div class="flex-container-show-row">
+              <div class="p-left-form">
+                <p><strong>Years in software:</strong></p>
+              </div>
+              <div class="p-left-show-right">
+                <p><%= founder.years_in_software %></p>
+              </div>
+            </div>
 
-</table>
+            <div class="flex-container-show-row">
+              <div class="p-left-form">
+                <p><strong>Availability:</strong></p>
+              </div>
+              <div class="p-left-show-right">
+                <p><%= founder.days_per_week_formatted %></p>
+              </div>
+            </div>
+            <div class="flex-container-show-row">
+              <div class="p-left-form">
+                <p><strong>Duration:</strong></p>
+              </div>
+              <div class="p-left-show-right">
+                <p><%= founder.duration_formatted %></p>
+              </div>
+            </div>
+
+            <div class="flex-container-show-row">
+              <div class="p-left-form">
+                <p><strong>Tech skills:</strong></p>
+              </div>
+              <div class="p-left-show-right">
+                <% founder.tech_breakdowns.each do |tech_breakdown| %>
+                  <%= tech_breakdown.name %>
+                  <% concat ('/') if founder.tech_breakdowns.last != tech_breakdown %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="p-left-form"><%= link_to '>> Show profile <<', "founders/#{founder.id}/connected", class: "link-3" %></div>
+          </div>
+        </div>
+        <hr color = "white" width="100%" display = block margin = 0 padding = 0>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<p><%= link_to 'Go back', "/companies/home", class: "link-3" %></p>
+

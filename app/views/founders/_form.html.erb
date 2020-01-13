@@ -2,7 +2,7 @@
  
   <% if @founder.errors.any? %>
     <div id="error_explanation">
-      <h2>
+      <h2> 
         <%= pluralize(@founder.errors.count, "error") %> prohibited
         this founder from being saved:
       </h2>
@@ -13,51 +13,132 @@
       </ul>
     </div>
   <% end %>
+ 
+  <div class="flex-container-10">
+    <div class="flex-container-9-4">
+      <div class="flex-container-12-1">
+        <div class="p-left">Only companies that are interested in you and paid us a refundable comission of $300 will be able to see your whole profile and contact information. The rest will only see the anonymous part.</div> 
 
-  <p>
-    <%= form.label :company %><br>
-    <%= form.text_field :company %>
-  </p> 
+        <%= form.fields_for :user do |user_field| %>
+          <div class="flex-container-form-column">
+            <p><strong>Name:</strong></p>
+            <%= user_field.text_field :name, :class => "form-field"%>
+          </div>
 
-  <p>
-    <%= form.label :website %><br>
-    <%= form.text_field :website %>
-  </p> 
+          <div class="flex-container-form-column">
+            <p><strong>Surname:</strong></p>
+            <%= user_field.text_field :surname, :class => "form-field" %>
+          </div>
 
-  <p>
-    <%= form.label :github %><br>
-    <%= form.text_field :github %>
-  </p> 
+          <div class="flex-container-form-column">
+            <p><strong>E-mail:</strong></p>
+            <%= user_field.text_field :email, :class => "form-field"%>
+          </div>
 
-  <%= form.fields_for :user do |user_field| %>
+          <%= user_field.hidden_field :id, :value => @founder.user.id %>        
+
+        <% end %>
+
+        <div class="flex-container-form-column">
+          <p><strong>Company:</strong></p>
+          <%= form.text_field :company, :class => "form-field"%>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>Website:</strong></p>
+          <%= form.text_field :website, :class => "form-field"%>
+        </div> 
+
+        <div class="flex-container-form-column">
+          <p><strong>Github:</strong></p>
+          <%= form.text_field :github, :class => "form-field"%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-container-10">
+    <div class="flex-container-9-4">
+      <div class="flex-container-12-1">
+        <h2>Anonymous part</h2>
+        <div class="p-left">The information in the following section will be open to all companies that are looking to hire. If they are interested in getting to know you, they have to pay us a refundable comission of $300. After they paid this comission, they can also see the non-anonymous part of your profile and get in touch with you. The anonymous part of your profile can't contain any names or links, or basically any specific information that can easily be traced back to you. Every entry or change in fields marked with a * will be reviewed by us first to ensure that it is anonymous.</div>
+
+        <div class="flex-container-form-column">
+          <p><strong>Ideally, how much would you work on your side gig?</strong></p>
+          <%= form.select :days_per_week, [[Founder::DAYS_PER_WEEK_FORMATTED['one'], 'one'], [Founder::DAYS_PER_WEEK_FORMATTED['two'], 'two'], [Founder::DAYS_PER_WEEK_FORMATTED['three'], 'three'], [Founder::DAYS_PER_WEEK_FORMATTED['four'], 'four'], [Founder::DAYS_PER_WEEK_FORMATTED[ 'five'], 'five']], {include_blank: true}, {:class => "form-field"} %>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>As far as you can tell now, for how long do you want a side gig?</strong></p>
+          <%= form.select :duration, [[Founder::DURATION_FORMATTED['one'], 'one'], [Founder::DURATION_FORMATTED['twotothree'], 'twotothree'], [Founder::DURATION_FORMATTED['fourtosix'], 'fourtosix'], [Founder::DURATION_FORMATTED['seventotwelve'], 'seventotwelve'], [Founder::DURATION_FORMATTED['overtwelve'], 'overtwelve']], {include_blank: true}, {:class => "form-field"} %>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>What is your speciality?</strong></p>
+          <%= form.select :specialisation, [[Founder::SPECIALISATION_FORMATTED['fullstack'], 'fullstack'], [Founder::SPECIALISATION_FORMATTED['frontend'], 'frontend'], [Founder::SPECIALISATION_FORMATTED['backend'], 'backend'], [Founder::SPECIALISATION_FORMATTED['UXUI'], 'UXUI'], [Founder::SPECIALISATION_FORMATTED['QA'],'QA']], {include_blank: true}, {:class => "form-field"} %>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>How many years have you been working in software?</strong></p>
+          <%= form.text_field :years_in_software, :class => "form-field"%>
+        </div>
+
+        <div class="flex-container-form-column">
+        <p><strong>List your 5 favorite/strongest tech skills:</strong></p>
+
+        <div class="flex-container-form-row">
+          <div class="p-left-form">Tech name</div>
+          <div class="p-left-form">Proficency</div> 
+          <div class="p-left-form">Years of experience</div>
+        </div>
+
+        <%= form.fields_for :tech_breakdowns do |tech_field| %>
+
+
+            <div class="flex-container-form-row">
+              <%= tech_field.text_field :name, :class => "form-field-inline"%>
+ 
+              <%= tech_field.select :proficiency, [["low", 'low'], ["medium", 'medium'], ["high", 'high']] , {include_blank: true}, {:class => "form-field-inline"} %>
+  
+
+              <%= tech_field.text_field :experience, :class => "form-field-inline"%>
+            </div>
+
+        <% end %>       
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>Tell us what your company does in one sentence: *</strong></p>
+          <%= form.text_area :company_description, :class => "form-field", rows: 2 %>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>What have you done so far? *</strong></p>
+          <%= form.text_area :done_so_far, :class => "form-field", rows: 4 %>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>The coolest thing you did or worked on in a company: *</strong></p>
+          <%= form.text_area :cool_work, :class => "form-field", rows: 4 %>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>What's the most impressive thing you've built? *</strong></p>
+          <%= form.text_area :impressive_build, :class => "form-field", rows: 4 %>
+        </div>
+
+        <div class="flex-container-form-column">
+          <p><strong>What is not important now but will be in 5 years? *</strong></p>
+          <%= form.text_area :important_in_5years, :class => "form-field", rows: 4 %>
+        </div>   
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-container-18">
     <p>
-      <%= user_field.label :name %><br>
-      <%= user_field.text_field :name %>
+      <%= form.submit 'Save', :class => 'button' %>
     </p>
-
-    <p>
-      <%= user_field.label :surname %><br>
-      <%= user_field.text_field :surname %>
-    </p>
-
-    <p>
-      <%= user_field.label :email %><br>
-      <%= user_field.text_field :email %>
-    </p>
-
-    <p>
-      <%= user_field.label :password %><br>
-      <%= user_field.text_field :password %>
-    </p> 
-
-    <p>
-      <%= user_field.label :role %><br>
-      <%= user_field.text_field :role %>
-    </p>
-  <% end %>
-
-  <p>
-    <%= form.submit %>
-  </p> 
+  </div>
 
 <% end %>

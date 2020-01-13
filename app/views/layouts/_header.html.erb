@@ -1,21 +1,20 @@
 <nav class="flex-container-1">
   <div class="center-image">
-    <a href="/">
-      <%= image_tag post.images.fd_test_v1_5_4.png %>
+    <a>
+      <%= image_tag 'fd_test_v1_5_4.png' , :class => 'logo' %>
     </a>
   </div>
 
-  <div class="flex-container-3" id="navBigScreen">
-    <div class="">
-      {{ range .Site.Menus.main }}
-        <a href={{ .URL }} class="flex-container-5">
-          {{ .Title }}
-        </a>
-        
-      {{ end }}
-    </div>   
-  </div>
-
+  <% if session[:user_id] %> <!-- if this doesn't work, try adding .present? -->
+    <div class="flex-container-3">
+        <a><%= link_to 'Logout', logout_path, class: "flex-container-5" %></a>
+    </div>
+  <% else %>
+    <div class="flex-container-3">
+        <a><%= link_to 'Login', login_path, class: "flex-container-5" %></a>
+    </div>
+  <% end %>
+<!-- 
     <div id="openMenu">
       <div class="burger"></div>
       <div class="burger"></div>
@@ -25,12 +24,8 @@
     <div id="menuContainer">
       <div class="flex-container-20">
         <span class="flex-container-21" id="closeMenu">x</span>
-        {{ range .Site.Menus.main }}
           <a href={{ .URL }} class="flex-container-5">
-            {{ .Title }}
           </a>
-          
-        {{ end }}
       </div>   
-    </div>
+    </div> -->
 </nav>

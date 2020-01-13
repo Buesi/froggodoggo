@@ -1,24 +1,146 @@
-<h1>Founder</h1>
 
-<p>
-  <strong>role:</strong>
-  <%= @founder.user.role %>
-</p>
 
-<p>
-  <strong>member since:</strong>
-  <%= @founder.user.created_at %>
-</p>
+<div class="flex-container-profile">
+  <div><%= image_tag @profile_pic.url , :class => 'profile' %></div>
+</div>
+
+<div class="flex-container-10">
+  <div class="flex-container-9-4">
+    <div class="flex-container-12-1">
+      
+      <div class="flex-container-show-row">
+        <div class="p-left-form">
+          <p><strong>Speciality:</strong></p>
+        </div>
+        <div class="p-left-show-right">
+          <%= @founder.specialisation_formatted %></p>
+        </div>
+      </div>
+
+      <div class="flex-container-show-row">
+        <div class="p-left-form">
+          <p><strong>Years in software:</strong></p>
+        </div>
+        <div class="p-left-show-right">
+          <%= @founder.years_in_software %></p>
+        </div>
+      </div>
+
+      <div class="flex-container-show-row">
+        <div class="p-left-form">
+          <p><strong>Availability:</strong></p>
+        </div>
+        <div class="p-left-show-right">
+          <%= @founder.days_per_week_formatted %></p>
+        </div>
+      </div>
+      <div class="flex-container-show-row">
+        <div class="p-left-form">
+          <p><strong>Duration:</strong></p>
+        </div>
+        <div class="p-left-show-right">
+          <%= @founder.duration_formatted %></p>
+        </div>
+      </div>
+
+      <div class="flex-container-show-row">
+        <div class="p-left-form">
+          <p><strong>Member since:</strong></p>
+        </div>
+        <div class="p-left-show-right">
+          <%= @founder.user.created_at.strftime("%b. %Y") %></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flex-container-12-1">
+      <div class="flex-container-form-column">
+        <div class="p-left">
+          <p><strong>5 favorite or strongest tech skills:</strong></p>
+        </div>
+
+        <div class="flex-container-form-row">
+          <div class="p-left-form">Tech name</div>
+          <div class="p-left-form">Proficency</div> 
+          <div class="p-left-form">Years of experience</div>
+        </div>
+
+        <div class="container-1">
+          <% @founder.tech_breakdowns.each do |tech_breakdown| %>
+            <div class="flex-container-form-row">
+              <div class="p-left-form">
+                <%= tech_breakdown.name %>
+              </div>
+              <div class="p-left-form">
+                <%= tech_breakdown.proficiency %>
+              </div>
+              <div class="p-left-form">
+                <%= tech_breakdown.experience %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="flex-container-form-column">
+        <div class="p-left">
+          <p><strong>Company description:</strong></p>
+        </div>
+        <div class="p-left">
+          <%= @founder.company_description %></p>
+        </div>
+      </div>
+      <div class="flex-container-form-column">
+        <div class="p-left">
+          <p><strong>Done so far:</strong></p>
+        </div>
+        <div class="p-left">
+          <%= @founder.done_so_far %></p>
+        </div>
+      </div>
+      <div class="flex-container-form-column">
+        <div class="p-left">
+          <p><strong>Coolest thing worked on:</strong></p>
+        </div>
+        <div class="p-left">
+          <%= @founder.cool_work %></p>
+        </div>
+      </div>
+      <div class="flex-container-form-column">
+        <div class="p-left">
+          <p><strong>Impressive build:</strong></p>
+        </div>
+        <div class="p-left">
+          <%= @founder.impressive_build %></p>
+        </div>
+      </div>
+      <div class="flex-container-form-column">
+        <div class="p-left">
+          <p><strong>Important in 5 years:</strong></p>
+        </div>
+        <div class="p-left">
+          <%= @founder.important_in_5years %></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 
 <%= form_with(url: "/contacts/create", method: "post") do %>
   <%= hidden_field_tag("contact[company_id]", @company_id) %>
   <%= hidden_field_tag("contact[founder_id]", @founder.id) %>
 
   <p>
-    <%= submit_tag("Contact") %>
+    <%= submit_tag("Contact", class: "button" )%>
   </p> 
 
 <% end %>
 
+<div class="container-link">
+  <p><%= link_to 'Go back', search_path, class: "link-3" %></p>
+</div>
 
-<%= link_to 'Back', search_path %>
+

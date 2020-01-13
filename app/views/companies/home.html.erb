@@ -1,0 +1,17 @@
+<div class="center-image">
+  <%= image_tag @profile_pic.url , :class => 'profile' %>
+</div>
+
+<h1>Hi <%= @company.user.name %></h1>
+<h2>What do you want to do today?</h2>
+
+<div class="flex-container-18">  
+  <p><%= link_to 'Hire a founder', "/search", :class => 'button' %></p>
+</div>
+
+<p><%= link_to 'Your profile', "/companies/profile", class: "link-3" %>
+|| <%= link_to 'Contacted founders', "/companies/contacted_founders" , class: "link-3" %>
+|| <%= link_to 'Payment overview', "/companies/payment_overview", class: "link-3" %></p>
+
+
+

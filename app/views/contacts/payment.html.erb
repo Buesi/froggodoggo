@@ -1,9 +1,20 @@
 <h1>Contact Founder</h1>
 
-<p>The successful introduction to a founder costs $300 on Froggodoggo. The amount will be reserved on your card if you proceed. Once you switch the status of your connection to this founder to "hired", the amount will be deduced from your card. However, if you decide not to hire this founder, update the status as "not hired" and we won't charge your card.</p>
+<div class="flex-container-10">
+  <div class="flex-container-9-4">
+    <div class="flex-container-12-1">
+		  <div class="p-center">The successful introduction to a founder costs $300 on Froggodoggo. The amount will be reserved on your card if you proceed. Once you switch the status of your connection to this founder to "hired", the amount will be deduced from your card. However, if you decide not to hire this founder, update the status as "not hired" and we won't charge your card.</div>
+    </div>
+	</div>
+</div>
 
-<button id='paymentButton'>Pay</button>
-<%= link_to 'Back', "search" %>
+<p>
+<button id='paymentButton' class="button">Pay</button>
+</p>
+
+<div class="container-link">
+	<p><%= link_to 'Go back', "/search/founders/#{@founder_id}", class: "link-3" %></p>
+</div>
 
 <script src="https://js.stripe.com/v3/"></script>
 

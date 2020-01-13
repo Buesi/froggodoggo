@@ -1,20 +1,52 @@
 Rails.application.routes.draw do
-  # get 'founders/new'
-  resources :founders
+  resources :founders, only: [:update]
+  resources :companies, only: [:update]
 
-  resources :companies 
+  root 'users#login' # ??? connect with other page!
 
-  root 'founders#new'
-
+  # everything in founder controller accessed by companies
   get 'search' => 'founders#index_anonymous'
   get 'search/founders/(:id)' => 'founders#show_anonymous'
-  get 'founders/(:id)/home' => 'founders#home'
-  get 'founders/(:id)/show_profile' => 'founders#show_profile'
-  get 'founders/(:id)/payment_overview' => 'founders#payment_overview'
-  get 'founders/(:id)/payment_settings' => 'founders#payment_settings'
-  get 'contacts/payment' => 'contacts#payment'
+  get 'founders/(:id)/connected' => 'founders#show'
 
+  # everything in founder controller accessed by founder
+  get 'founders/home' => 'founders#home'
+  get 'founders/profile' => 'founders#show_profile'
+  get 'founders/edit' => 'founders#edit'
+  get 'founders/picture' => 'founders#edit_profile_picture'
+  post 'founders/picture' => 'founders#update_profile_picture'
+  get 'founders/company_contacts' => 'founders#company_contacts'
+
+  #create new founder as an admin
+  get 'founders/new_admin' => 'founders#new_admin'
+  post 'founders/new_admin' => 'founders#create_admin'
+  # get 'founders/(:id)/payment_overview' => 'founders#payment_overview'
+  # get 'founders/(:id)/payment_settings' => 'founders#payment_settings'
+  
+  # everything in company controller accessed by company
+  get 'companies/home' => 'companies#home'
+  get 'companies/profile' => 'companies#show' 
+  get 'companies/edit' => 'companies#edit' 
+  get 'companies/picture' => 'companies#edit_profile_picture'
+  post 'companies/picture' => 'companies#update_profile_picture'
+  get 'companies/contacted_founders' => 'companies#contacted_founders'
+  get 'companies/payment_overview' => 'companies#payment_overview'
+  post 'companies/(:id)/mark_as_hired' => 'companies#mark_as_hired'
+  post 'companies/(:id)/mark_as_not_hired' => 'companies#mark_as_not_hired'
+
+  get 'contacts/payment' => 'contacts#payment'
   post 'contacts/create' => 'contacts#create'
+
+  get 'companies/new_admin' => 'companies#new_admin'
+  post 'companies/new_admin' => 'companies#create_admin'
+  
+  get 'auth/auth0/callback' => 'auth0#callback'
+  get 'auth/failure' => 'auth0#failure'
+  post 'auth/password_reset' => 'auth0#password_reset'
+
+  get 'login' => 'users#login'
+  get 'logout' => 'logout#logout'
+
   post 'stripe_webhooks/payment_successful' => 'stripe_webhooks#payment_successful'
 
   # for stripe payment
