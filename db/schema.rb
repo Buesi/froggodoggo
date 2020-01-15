@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_151015) do
+ActiveRecord::Schema.define(version: 2020_01_15_122202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_151015) do
     t.string "qf_thrones_breaking"
     t.string "qf_jungle"
     t.string "qf_belt_susp"
+    t.boolean "profile_public"
     t.index ["user_id"], name: "index_founders_on_user_id"
   end
 
@@ -96,7 +97,6 @@ ActiveRecord::Schema.define(version: 2020_01_09_151015) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "surname"
-    t.string "stripe_token"
     t.string "auth0_id"
     t.bigint "profile_picture_id"
     t.index ["profile_picture_id"], name: "index_users_on_profile_picture_id"

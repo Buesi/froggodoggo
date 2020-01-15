@@ -31,38 +31,39 @@ class FoundersController < ApplicationController
     url = Rack::Utils.parse_query URI(request.original_url).query 
     sorter = url["sort"]
     @direc = url["direc"]
+    public_founders = Founder.where("profile_public = ?", true).all
 
     case sorter
     when "specialisation"
-      @founders = Founder.order("specialisation #{@direc}").all
+      @founders = public_founders.order("specialisation #{@direc}").all
         if @direc == 'ASC'
           @direc = 'DESC'
         elsif @direc == 'DESC'
           @direc = 'ASC'
         end
     when "years_in_software"
-      @founders = Founder.order("years_in_software #{@direc}").all
+      @founders = public_founders.order("years_in_software #{@direc}").all
         if @direc == 'ASC'
           @direc = 'DESC'
         elsif @direc == 'DESC'
           @direc = 'ASC'
         end
     when "days_per_week"
-      @founders = Founder.order("days_per_week #{@direc}").all
+      @founders = public_founders.order("days_per_week #{@direc}").all
         if @direc == 'ASC'     
           @direc = 'DESC'      
         elsif @direc == 'DESC'
           @direc = 'ASC'
         end    
     when "duration"
-      @founders = Founder.order("duration #{@direc}").all
+      @founders = public_founders.order("duration #{@direc}").all
         if @direc == 'ASC'     
           @direc = 'DESC'      
         elsif @direc == 'DESC'
           @direc = 'ASC'
         end   
     else
-      @founders = Founder.all 
+      @founders = public_founders.all 
       @direc = 'ASC'
     end
   end
@@ -197,6 +198,18 @@ class FoundersController < ApplicationController
       render 'edit'
     end
 
+  end
+
+  def publish
+    @founder = Founder.find(@founder_id)
+
+    if @founder.profile_public != true
+      @founder.profile_public = true
+    else
+      @founder.profile_public = false
+    end
+    @founder.save
+    redirect_to "/founders/profile"
   end
 
   def edit_profile_picture

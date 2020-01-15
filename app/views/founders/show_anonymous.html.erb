@@ -42,22 +42,20 @@
           <%= @founder.duration_formatted %></p>
         </div>
       </div>
-
-      <div class="flex-container-show-row">
-        <div class="p-left-form">
-          <p><strong>Member since:</strong></p>
-        </div>
-        <div class="p-left-show-right">
-          <%= @founder.user.created_at.strftime("%b. %Y") %></p>
-        </div>
-      </div>
-
     </div>
 
     <div class="flex-container-12-1">
       <div class="flex-container-form-column">
         <div class="p-left">
-          <p><strong>5 favorite or strongest tech skills:</strong></p>
+          <h2>Questions we asked this founder:</h2>
+          <div class="p-left">
+            <p>Please note that the answers are anonymized.</p>
+          </div>          
+        </div>
+      </div>
+      <div class="flex-container-form-column">
+        <div class="p-left">
+          <p><strong>What are your top 5 tech skills?</strong></p>
         </div>
 
         <div class="flex-container-form-row">
@@ -85,7 +83,7 @@
 
       <div class="flex-container-form-column">
         <div class="p-left">
-          <p><strong>Company description:</strong></p>
+          <p><strong>What does your company do (in one sentence)?</strong></p>
         </div>
         <div class="p-left">
           <%= @founder.company_description %></p>
@@ -93,7 +91,7 @@
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
-          <p><strong>Done so far:</strong></p>
+          <p><strong>What have you done so far?</strong></p>
         </div>
         <div class="p-left">
           <%= @founder.done_so_far %></p>
@@ -101,7 +99,7 @@
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
-          <p><strong>Coolest thing worked on:</strong></p>
+          <p><strong>What's the coolest thing you worked on?</strong></p>
         </div>
         <div class="p-left">
           <%= @founder.cool_work %></p>
@@ -109,7 +107,7 @@
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
-          <p><strong>Impressive build:</strong></p>
+          <p><strong>What's the most impressive thing you've built?</strong></p>
         </div>
         <div class="p-left">
           <%= @founder.impressive_build %></p>
@@ -117,7 +115,7 @@
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
-          <p><strong>Important in 5 years:</strong></p>
+          <p><strong>What is not important now but will be in 5 years?</strong></p>
         </div>
         <div class="p-left">
           <%= @founder.important_in_5years %></p>

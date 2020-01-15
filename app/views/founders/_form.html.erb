@@ -17,8 +17,9 @@
   <div class="flex-container-10">
     <div class="flex-container-9-4">
       <div class="flex-container-12-1">
-        <div class="p-left">Only companies that are interested in you and paid us a refundable comission of $300 will be able to see your whole profile and contact information. The rest will only see the anonymous part.</div> 
+        <div class="p-left">Initially, companies only see the visible section (see below) of your profile. Companies that are interested in contacting you and pay our $300 matching fee get access to the hidden section of your profile. Only companies that we have approved have access to Froggodoggo, so even the visible section is not published publicly.</div> 
 
+        <h2>Hidden section</h2>
         <%= form.fields_for :user do |user_field| %>
           <div class="flex-container-form-column">
             <p><strong>Name:</strong></p>
@@ -60,8 +61,8 @@
   <div class="flex-container-10">
     <div class="flex-container-9-4">
       <div class="flex-container-12-1">
-        <h2>Anonymous part</h2>
-        <div class="p-left">The information in the following section will be open to all companies that are looking to hire. If they are interested in getting to know you, they have to pay us a refundable comission of $300. After they paid this comission, they can also see the non-anonymous part of your profile and get in touch with you. The anonymous part of your profile can't contain any names or links, or basically any specific information that can easily be traced back to you. Every entry or change in fields marked with a * will be reviewed by us first to ensure that it is anonymous.</div>
+        <h2>Visible section</h2>
+        <div class="p-left">The following information is visible to all companies on Froggodoggo. Make sure not to include any info that might identify you or your projects (like names or higly specific details). We will review changes you make to fields marked with a * to ensure your anonymity.</div>
 
         <div class="flex-container-form-column">
           <p><strong>Ideally, how much would you work on your side gig?</strong></p>
@@ -84,7 +85,7 @@
         </div>
 
         <div class="flex-container-form-column">
-        <p><strong>List your 5 favorite/strongest tech skills:</strong></p>
+        <p><strong>What are your top 5 tech skills?</strong></p>
 
         <div class="flex-container-form-row">
           <div class="p-left-form">Tech name</div>
@@ -108,28 +109,28 @@
         </div>
 
         <div class="flex-container-form-column">
-          <p><strong>Tell us what your company does in one sentence: *</strong></p>
-          <%= form.text_area :company_description, :class => "form-field", rows: 2 %>
+          <p><strong>What does your company do (in one sentence)? *</strong></p>
+          <%= form.text_area :company_description, :placeholder => "Be short and concise. For example:\nWe help people adopt cats and dogs by making the adoption process quick and simple.", :class => "form-field", rows: 3 %>
         </div>
 
         <div class="flex-container-form-column">
           <p><strong>What have you done so far? *</strong></p>
-          <%= form.text_area :done_so_far, :class => "form-field", rows: 4 %>
+          <%= form.text_area :done_so_far, :placeholder => "Be concrete and highlight impressive things. For example:\nI've launched my current startup in October and we now have 2,000 monthly active users just through word-of-mouth. Before starting this company, I was a software engineer at Netflix for 3 years where I worked on improving the recommendation algorithm. My team there helped increase user engagement rates by 80%.", :class => "form-field", rows: 7 %>
         </div>
 
         <div class="flex-container-form-column">
-          <p><strong>The coolest thing you did or worked on in a company: *</strong></p>
-          <%= form.text_area :cool_work, :class => "form-field", rows: 4 %>
+          <p><strong>What's the coolest thing you worked on? *</strong></p>
+          <%= form.text_area :cool_work, :placeholder => "Don't hesitate to be goofy. For example:\nDuring an internal Netflix hackathon, I worked on a browser plugin which let you easily record funny voice overs while streaming content on Netflix. For obvious legal reasons, we never released it :)", :class => "form-field", rows: 6 %>
         </div>
 
         <div class="flex-container-form-column">
           <p><strong>What's the most impressive thing you've built? *</strong></p>
-          <%= form.text_area :impressive_build, :class => "form-field", rows: 4 %>
+          <%= form.text_area :impressive_build, :placeholder => "What are you most proud of? For example:\nI'm proud that I launched my current company super quickly. It took me 1 month from idea to first real users, and then another two weeks for first paying customer.", :class => "form-field", rows: 6 %>
         </div>
 
         <div class="flex-container-form-column">
           <p><strong>What is not important now but will be in 5 years? *</strong></p>
-          <%= form.text_area :important_in_5years, :class => "form-field", rows: 4 %>
+          <%= form.text_area :important_in_5years, :placeholder => "Come across as genuine. For example:\nVirtual reality. I use it every day,  but many people see it as a toy, but soon it will replace the laptop for many users, change the way we socialize online for the better, and will have immense impact on improving education.", :class => "form-field", rows: 6 %>
         </div>   
       </div>
     </div>
