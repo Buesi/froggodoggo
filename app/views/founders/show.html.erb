@@ -36,17 +36,20 @@
           <p><strong>Website:</strong></p>
         </div>
         <div class="p-left-show-right">
-          <%= @founder.website %></p>
+          <% if @founder.website.present? %>
+            <%= link_to @founder.website, @founder.website, :class => "link-3"  %></p>
+          <% end %>
         </div>
       </div>
       <div class="flex-container-show-row">
         <div class="p-left-form">
           <p><strong>Github:</strong></p>
         </div>
-        <div class="p-left-show-right">
-          <%= @founder.github %></p>
+        <div class="p-left-show-right">        
+          <% if @founder.github.present? %>
+            <%= link_to @founder.github, @founder.github, :class => "link-3"  %></p>
+          <% end %>
         </div>
-      </div>
       <div class="flex-container-show-row">
         <div class="p-left-form">
           <p><strong>Speciality:</strong></p>

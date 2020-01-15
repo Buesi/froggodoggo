@@ -36,15 +36,9 @@
           <p><strong>Website:</strong></p>
         </div>
         <div class="p-left-show-right">
-          <%= @company.website %></p>
-        </div>
-      </div>
-      <div class="flex-container-show-row">
-        <div class="p-left-form">
-          <p><strong>Member since:</strong></p>
-        </div>
-        <div class="p-left-show-right">
-          <%= @company.user.created_at.strftime("%b. %Y") %></p>
+          <% if @company.website.present? %>
+            <%= link_to @company.website, @company.website, :class => "link-3"  %></p>
+          <% end %>
         </div>
       </div>
     </div>

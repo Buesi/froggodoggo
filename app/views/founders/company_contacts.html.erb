@@ -41,15 +41,9 @@
                 <p><strong>Website:</strong></p>
               </div>
               <div class="p-left-show-right">
-                <p><%= contact.company.website %></p>
-              </div>
-            </div>
-            <div class="flex-container-show-row">
-              <div class="p-left-form">
-                <p><strong>Member since:</strong></p>
-              </div>
-              <div class="p-left-show-right">
-                <p><%= contact.company.user.created_at.strftime("%d %b. %Y") %></p>
+                <% if contact.company.website.present? %>
+                  <%= link_to contact.company.website, contact.company.website, :class => "link-3"  %></p>
+                <% end %>
               </div>
             </div>
             <div class="flex-container-show-row">
@@ -66,11 +60,11 @@
               </div>
               <div class="p-left-show-right">
                 <% if contact.hire_status == 'hired' %>
-                  <p>Congrats, you've been hired!!!!!!!</p>
+                  <p>Congrats, you've been hired!</p>
                 <% elsif contact.hire_status == 'declined' %>
-                  <p>Sorry, they've decided not to hire you.</p>
+                  <p>They've decided not to hire you.</p>
                 <% else %>
-                  <p>They are interested in getting to know you.</p>
+                  <p>They are interested in getting to know you and will contact you shortly.</p>
                 <% end %>
               </div>
             </div>
