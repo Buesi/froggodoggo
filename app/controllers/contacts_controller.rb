@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :logged_in_using_omniauth?
+  before_action :logged_in_using_omniauth?, only: [:create]
 
   def payment
     url = Rack::Utils.parse_query URI(request.original_url).query 

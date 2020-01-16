@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root 'users#login' # ??? connect with other page!
 
+  get 'auth0/password_reset_callback' => 'auth0#password_reset_callback'
+
   # everything in founder controller accessed by companies
   get 'search' => 'founders#index_anonymous'
   get 'search/founders/(:id)' => 'founders#show_anonymous'

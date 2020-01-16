@@ -1,5 +1,6 @@
-
 class Auth0Controller < ApplicationController
+  before_action :logged_in_using_omniauth?, only: [:password_reset_callback]
+
   def callback
     # This stores all the user information that came from Auth0
     # and the IdP
@@ -49,6 +50,14 @@ class Auth0Controller < ApplicationController
       redirect_to result["ticket"]
     end
 
+  end
+
+  def password_reset_callback
+    if @founder.present?
+      redirect_to "/founders/home"
+    elsif @company.present?
+      redirect_to "/companies/home"
+    end
   end
 
   def failure
