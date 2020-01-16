@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_action :logged_in_using_omniauth?
 
   def payment
     url = Rack::Utils.parse_query URI(request.original_url).query 
@@ -24,15 +25,14 @@ class ContactsController < ApplicationController
   def create
     founder_id = contact_params[:founder_id]
 
-    existing_contact = Contact.where("founder_id = ? AND company_id = ?", founder_id, @company_id).first
+    contact = Contact.where("founder_id = ? AND company_id = ?", founder_id, @company_id).first
 
-    if !existing_contact
-      contact = Contact.new(contact_params)
-      contact.save
-      redirect_to "/contacts/payment?founder_id=#{founder_id}&contact_id=#{contact.id}" 
-    elsif !existing_contact.paid
-      redirect_to "/contacts/payment?founder_id=#{founder_id}&contact_id=#{existing_contact.id}" 
-    end   
+    if !contact
+      contact = Contact.create(contact_params)
+    end
+
+    redirect_to "/contacts/payment?founder_id=#{founder_id}&contact_id=#{contact.id}" 
+ 
   end
 
   private
