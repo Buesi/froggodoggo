@@ -53,9 +53,9 @@ class Auth0Controller < ApplicationController
   end
 
   def password_reset_callback
-    if @founder.present?
+    if @founder_id.present?
       redirect_to "/founders/home"
-    elsif @company.present?
+    elsif @company_id.present?
       redirect_to "/companies/home"
     end
   end
