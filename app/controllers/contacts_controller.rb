@@ -8,8 +8,8 @@ class ContactsController < ApplicationController
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
-        name: 'Contact',
-        description: 'blabla',
+        name: 'Matching Fee',
+        description: "We charge a matching fee before showing you a founders contact details. We refund this if you don't end up hiring them",
         amount: 30000,
         currency: 'usd',
         quantity: 1,
