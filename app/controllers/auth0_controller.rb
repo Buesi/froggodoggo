@@ -1,5 +1,5 @@
 class Auth0Controller < ApplicationController
-  before_action :logged_in_using_omniauth?, only: [:password_reset_callback]
+  before_action :logged_in_using_omniauth?, only: [:password_reset]
 
   def callback
     # This stores all the user information that came from Auth0
@@ -42,22 +42,19 @@ class Auth0Controller < ApplicationController
 
     auth0_id = user.auth0_id
     auth0_service = Auth0Service.new
-    puts "request.base_url"
-    puts request.base_url
-    result = auth0_service.password_change(request.base_url, auth0_id)
-    puts result
+
+    url = request.base_url
+    if @founder_id.present?
+      url += "/founders/home"
+    elsif @company_id.present?
+      url += "/companies/home"
+    end
+
+    result = auth0_service.password_change(url, auth0_id)
     if result.present?
       redirect_to result["ticket"]
     end
 
-  end
-
-  def password_reset_callback
-    if @founder_id.present?
-      redirect_to "/founders/home"
-    elsif @company_id.present?
-      redirect_to "/companies/home"
-    end
   end
 
   def failure
