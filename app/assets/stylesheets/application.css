@@ -110,6 +110,18 @@ p {
   text-align: center;  
 }
 
+.p-italic-yellow {
+  font-size: 20px;
+  font-weight: 300; 
+  font-style: italic;
+  line-height: 125%; 
+  color: #dddba8;
+  margin: 0px;
+  padding: 0px 0px 10px 0px;
+  width:100%;
+  text-align: left;
+}
+
 h1 {
   font-weight: 500;
   color: #17c697;

@@ -17,7 +17,9 @@
   <div class="flex-container-10">
     <div class="flex-container-9-4">
       <div class="flex-container-12-1">
-        <div class="p-left">Initially, companies only see the visible section (see below) of your profile. Companies that are interested in contacting you and pay our $300 matching fee get access to the hidden section of your profile. Only companies that we have approved have access to Froggodoggo, so even the visible section is not published publicly.</div> 
+        <div class="p-left">
+          Initially, companies only see the visible section (see below) of your profile. Companies that are interested in contacting you and pay our $300 matching fee get access to the hidden section of your profile. Only companies that we have approved have access to Froggodoggo, so even the visible section is not published publicly.  
+        </div> 
 
         <h2>Hidden section</h2>
         <%= form.fields_for :user do |user_field| %>
@@ -54,15 +56,11 @@
           <p><strong>Github URL:</strong></p>
           <%= form.url_field :github, :class => "form-field"%>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="flex-container-10">
-    <div class="flex-container-9-4">
-      <div class="flex-container-12-1">
-        <h2>Visible section</h2>
-        <div class="p-left">The following information is visible to all companies on Froggodoggo. Make sure not to include any info that might identify you or your projects (like names or higly specific details). We will review changes you make to fields marked with a * to ensure your anonymity.</div>
+        
+        <div class="p-left">
+          <h2>Visible section</h2>
+          The following information is visible to all companies on Froggodoggo. Make sure not to include any info that might identify you or your projects (like names or higly specific details). We will review changes you make to fields marked with a * to ensure your anonymity.
+        </div>
 
         <div class="flex-container-form-column">
           <p><strong>Ideally, how much would you work on your side gig?</strong></p>
@@ -97,12 +95,12 @@
 
 
             <div class="flex-container-form-row">
-              <%= tech_field.text_field :name, :class => "form-field-inline"%>
+              <%= tech_field.text_field :name, :placeholder => "e.g. Ruby on Rails", :class => "form-field-inline"%>
  
               <%= tech_field.select :proficiency, [["low", 'low'], ["medium", 'medium'], ["high", 'high']] , {include_blank: true}, {:class => "form-field-inline"} %>
   
 
-              <%= tech_field.text_field :experience, :class => "form-field-inline"%>
+              <%= tech_field.text_field :experience, :placeholder => "e.g. 5", :class => "form-field-inline"%>
             </div>
 
         <% end %>       

@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         name: 'Matching Fee',
-        description: "We charge a matching fee before showing you a founders contact details. We refund this if you don't end up hiring them",
+        description: "We put the matching fee as a deposit on your credit card before showing you a founders contact details. We release the deposit if you don't end up hiring them. If you do hire them, we'll charge the matching fee.",
         amount: 30000,
         currency: 'usd',
         quantity: 1,

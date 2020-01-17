@@ -5,8 +5,9 @@
 <div class="flex-container-10">
   <div class="flex-container-9-4">
     <div class="flex-container-12-1">
-
-
+      <div class="p-left">
+        <h2>Hidden section</h2>
+      </div>
       <div class="flex-container-show-row">
         <div class="p-left-form">
           <p><strong>Name:</strong></p>
@@ -52,6 +53,13 @@
         </div>
       </div>
      
+      <div class="p-left">
+       <h2>Visible section</h2>
+       <% if !@entry.nil?  %>
+        <div class="p-italic-yellow">Your updates are being reviewed...</div>
+       <% end %>
+      </div>
+
       <div class="flex-container-show-row">
         <div class="p-left-form">
           <p><strong>Speciality:</strong></p>
@@ -120,41 +128,61 @@
         <div class="p-left">
           <p><strong>What does your company do (in one sentence)?</strong></p>
         </div>
-        <div class="p-left">
-          <%= @founder.company_description %></p>
-        </div>
+        <% if !@entry.company_description.nil? %>
+          <div class="p-italic-yellow">
+        <% else %>
+          <div class="p-left">
+        <% end %>
+            <%= @founder.company_description %></p>
+          </div>
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
           <p><strong>What have you done so far?</strong></p>
         </div>
-        <div class="p-left">
-          <%= @founder.done_so_far %></p>
-        </div>
+        <% if !@entry.done_so_far.nil? %>
+          <div class="p-italic-yellow">
+        <% else %>
+          <div class="p-left">
+        <% end %>
+            <%= @founder.done_so_far %></p>
+          </div>
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
           <p><strong>What's the coolest thing you worked on?</strong></p>
         </div>
-        <div class="p-left">
-          <%= @founder.cool_work %></p>
-        </div>
+        <% if !@entry.cool_work.nil? %>
+          <div class="p-italic-yellow">
+        <% else %>
+          <div class="p-left">
+        <% end %>
+            <%= @founder.cool_work %></p>
+          </div>
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
           <p><strong>What's the most impressive thing you've built?</strong></p>
         </div>
-        <div class="p-left">
-          <%= @founder.impressive_build %></p>
-        </div>
+        <% if !@entry.impressive_build.nil? %>
+          <div class="p-italic-yellow">
+        <% else %>
+          <div class="p-left">
+        <% end %>
+            <%= @founder.impressive_build %></p>
+           </div>
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
           <p><strong>What is not important now but will be in 5 years?</strong></p>
         </div>
-        <div class="p-left">
-          <%= @founder.important_in_5years %></p>
-        </div>
+        <% if !@entry.important_in_5years.nil? %>
+          <div class="p-italic-yellow">
+        <% else %>
+          <div class="p-left">
+        <% end %>
+            <%= @founder.important_in_5years %></p>
+          </div>
       </div>
 
     </div>

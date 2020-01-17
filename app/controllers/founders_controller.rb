@@ -102,17 +102,35 @@ class FoundersController < ApplicationController
     end 
   end   
 
-  def company_contacts
-    @founder = Founder.find(@founder_id)
-
-    @all_contacts = Contact.where("founder_id = ? AND paid = ?", @founder_id, true).all
-  end
-
   def show_profile
     @founder = Founder.find(@founder_id)
     @user = User.where("id = ?", @founder.user_id).last
     @profile_pic = ProfilePicture.where("id = ?", @user.profile_picture_id).last
+    @entry = UnreviewedFounderEntry.where("founder_id = ? AND review_status = ?" , @founder_id, 0).last
 
+    unless @entry.nil?
+      if @entry.company_description.present?
+        @founder.company_description = @entry.company_description 
+      end
+      if @entry.done_so_far.present?
+        @founder.done_so_far = @entry.done_so_far 
+      end
+      if @entry.cool_work.present?
+        @founder.cool_work = @entry.cool_work 
+      end
+      if @entry.impressive_build.present?
+        @founder.impressive_build = @entry.impressive_build 
+      end
+      if @entry.important_in_5years.present?
+        @founder.important_in_5years = @entry.important_in_5years 
+      end     
+    end
+  end
+
+  def company_contacts
+    @founder = Founder.find(@founder_id)
+
+    @all_contacts = Contact.where("founder_id = ? AND paid = ?", @founder_id, true).all
   end
 
   def edit
