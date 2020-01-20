@@ -104,9 +104,25 @@ class FoundersController < ApplicationController
 
   def show_profile
     @founder = Founder.find(@founder_id)
-    @user = User.where("id = ?", @founder.user_id).last
-    @profile_pic = ProfilePicture.where("id = ?", @user.profile_picture_id).last
-    @entry = UnreviewedFounderEntry.where("founder_id = ? AND review_status = ?" , @founder_id, 0).last
+    @user = User.where(id: @founder.user_id).last
+    @profile_pic = ProfilePicture.where(id: @user.profile_picture_id).last
+    @entry = UnreviewedFounderEntry.where(founder_id: @founder_id, review_status: 0).last
+    tech = TechBreakdown.where(founder_id: @founder_id).all
+    
+    tech_breakdown_present = false
+    tech.each do |t|
+      if t.name.present? and t.proficiency.present? and t.experience.present?
+        tech_breakdown_present = true
+        break
+      end
+    end 
+
+    if @founder.user.name.present? and @founder.user.surname.present? and @founder.user.email.present? and @founder.company.present? and @founder.website.present? and @founder.github.present? and @founder.specialisation_formatted.present? and @founder.years_in_software.present? and @founder.days_per_week_formatted.present? and @founder.duration_formatted.present? and @founder.company_description.present? and @founder.done_so_far.present? and @founder.cool_work.present? and @founder.impressive_build.present? and @founder.important_in_5years.present? and tech_breakdown_present
+
+      @publishable = true
+    else
+      @publishable = false
+    end
 
     unless @entry.nil?
       if @entry.company_description.present?

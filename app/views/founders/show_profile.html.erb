@@ -1,6 +1,8 @@
+
 <div class="flex-container-profile">
   <div><%= image_tag @profile_pic.url , :class => 'profile' %></div>
 </div>
+
 
 <div class="flex-container-10">
   <div class="flex-container-9-4">
@@ -204,8 +206,8 @@
             <%= @founder.important_in_5years %></p>
           </div>
       </div>
-      <% if @founder.user.name.nil? or @founder.user.surname.nil? or @founder.user.email.nil? or @founder.company.nil? or @founder.website.nil? or @founder.github.nil? or @founder.specialisation_formatted.nil? or @founder.years_in_software.nil? or @founder.days_per_week_formatted.nil? or @founder.duration_formatted.nil? or @founder.company_description.nil? or @founder.done_so_far.nil? or @founder.cool_work.nil? or @founder.impressive_build.nil? or @founder.important_in_5years.nil? or @entry %>
-        <p>After you've filled in all fields and your entries have been reviewed, you can publish your profile and companies can discover you.</p>
+      <% unless @publishable %>
+        <p>After you've completed your profile, we will review and publish it so that companies can discover you. You can always unpublish it later.</p>
       <% end %>
     </div>
     
@@ -219,9 +221,9 @@
 <% if @founder.profile_public == true %> <!-- if this doesn't work, try adding .present? -->
   || <%= link_to 'Unpublish profile', "/founders/publish", method: 'post', class: "link-3" %> 
 <% else %>
-  <% if @founder.user.name.nil? or @founder.user.surname.nil? or @founder.user.email.nil? or @founder.company.nil? or @founder.website.nil? or @founder.github.nil? or @founder.specialisation_formatted.nil? or @founder.years_in_software.nil? or @founder.days_per_week_formatted.nil? or @founder.duration_formatted.nil? or @founder.company_description.nil? or @founder.done_so_far.nil? or @founder.cool_work.nil? or @founder.impressive_build.nil? or @founder.important_in_5years.nil? or @entry %>
+  <% if @publishable %>
+    || <%= link_to 'Publish profile', "/founders/publish", method: 'post', class: "link-3" %>
   <% else %>
-    || <%= link_to 'Publish profile', "/founders/publish", method: 'post', class: "link-3" %> 
   <% end %>
 <% end %>
  || <%= link_to 'Change password', "/auth/password_reset", method: 'post' , class: "link-3" %>
