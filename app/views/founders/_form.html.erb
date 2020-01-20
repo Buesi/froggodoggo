@@ -74,7 +74,7 @@
 
         <div class="flex-container-form-column">
           <p><strong>What is your speciality?</strong></p>
-          <%= form.select :specialisation, [[Founder::SPECIALISATION_FORMATTED['fullstack'], 'fullstack'], [Founder::SPECIALISATION_FORMATTED['frontend'], 'frontend'], [Founder::SPECIALISATION_FORMATTED['backend'], 'backend'], [Founder::SPECIALISATION_FORMATTED['UXUI'], 'UXUI'], [Founder::SPECIALISATION_FORMATTED['QA'],'QA']], {include_blank: true}, {:class => "form-field"} %>
+          <%= form.select :specialisation, [[Founder::SPECIALISATION_FORMATTED['fullstack'], 'fullstack'], [Founder::SPECIALISATION_FORMATTED['frontend'], 'frontend'], [Founder::SPECIALISATION_FORMATTED['backend'], 'backend'], [Founder::SPECIALISATION_FORMATTED['UXUI'], 'UXUI'], [Founder::SPECIALISATION_FORMATTED['QA'],'QA'], [Founder::SPECIALISATION_FORMATTED['datascience'],'datascience']], {include_blank: true}, {:class => "form-field"} %>
         </div>
 
         <div class="flex-container-form-column">

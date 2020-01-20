@@ -128,8 +128,12 @@
         <div class="p-left">
           <p><strong>What does your company do (in one sentence)?</strong></p>
         </div>
-        <% if !@entry.company_description.nil? %>
-          <div class="p-italic-yellow">
+        <% if !@entry.nil? %>
+          <% if !@entry.company_description.nil? %>
+            <div class="p-italic-yellow">
+          <% else %>
+            <div class="p-left">
+          <% end %>
         <% else %>
           <div class="p-left">
         <% end %>
@@ -140,8 +144,12 @@
         <div class="p-left">
           <p><strong>What have you done so far?</strong></p>
         </div>
-        <% if !@entry.done_so_far.nil? %>
-          <div class="p-italic-yellow">
+        <% if !@entry.nil? %>
+          <% if !@entry.done_so_far.nil? %>
+            <div class="p-italic-yellow">
+          <% else %>
+            <div class="p-left">
+          <% end %>
         <% else %>
           <div class="p-left">
         <% end %>
@@ -152,8 +160,12 @@
         <div class="p-left">
           <p><strong>What's the coolest thing you worked on?</strong></p>
         </div>
-        <% if !@entry.cool_work.nil? %>
-          <div class="p-italic-yellow">
+        <% if !@entry.nil? %>
+          <% if !@entry.cool_work.nil? %>
+            <div class="p-italic-yellow">
+          <% else %>
+            <div class="p-left">
+          <% end %>
         <% else %>
           <div class="p-left">
         <% end %>
@@ -164,8 +176,12 @@
         <div class="p-left">
           <p><strong>What's the most impressive thing you've built?</strong></p>
         </div>
-        <% if !@entry.impressive_build.nil? %>
-          <div class="p-italic-yellow">
+        <% if !@entry.nil? %>
+          <% if !@entry.impressive_build.nil? %>
+            <div class="p-italic-yellow">
+          <% else %>
+            <div class="p-left">
+          <% end %>
         <% else %>
           <div class="p-left">
         <% end %>
@@ -176,26 +192,37 @@
         <div class="p-left">
           <p><strong>What is not important now but will be in 5 years?</strong></p>
         </div>
-        <% if !@entry.important_in_5years.nil? %>
-          <div class="p-italic-yellow">
+        <% if !@entry.nil? %>
+          <% if !@entry.important_in_5years.nil? %>
+            <div class="p-italic-yellow">
+          <% else %>
+            <div class="p-left">
+          <% end %>
         <% else %>
           <div class="p-left">
         <% end %>
             <%= @founder.important_in_5years %></p>
           </div>
       </div>
-
+      <% if @founder.user.name.nil? or @founder.user.surname.nil? or @founder.user.email.nil? or @founder.company.nil? or @founder.website.nil? or @founder.github.nil? or @founder.specialisation_formatted.nil? or @founder.years_in_software.nil? or @founder.days_per_week_formatted.nil? or @founder.duration_formatted.nil? or @founder.company_description.nil? or @founder.done_so_far.nil? or @founder.cool_work.nil? or @founder.impressive_build.nil? or @founder.important_in_5years.nil? or @entry %>
+        <p>After you've filled in all fields and your entries have been reviewed, you can publish your profile and companies can discover you.</p>
+      <% end %>
     </div>
-
+    
   </div>
 </div>
+
+
 
 <p><%= link_to 'Choose profile picture', "/founders/picture", class: "link-3" %>
  || <%= link_to 'Edit profile information', "/founders/edit", class: "link-3" %>
 <% if @founder.profile_public == true %> <!-- if this doesn't work, try adding .present? -->
   || <%= link_to 'Unpublish profile', "/founders/publish", method: 'post', class: "link-3" %> 
 <% else %>
-  || <%= link_to 'Publish profile', "/founders/publish", method: 'post', class: "link-3" %> 
+  <% if @founder.user.name.nil? or @founder.user.surname.nil? or @founder.user.email.nil? or @founder.company.nil? or @founder.website.nil? or @founder.github.nil? or @founder.specialisation_formatted.nil? or @founder.years_in_software.nil? or @founder.days_per_week_formatted.nil? or @founder.duration_formatted.nil? or @founder.company_description.nil? or @founder.done_so_far.nil? or @founder.cool_work.nil? or @founder.impressive_build.nil? or @founder.important_in_5years.nil? or @entry %>
+  <% else %>
+    || <%= link_to 'Publish profile', "/founders/publish", method: 'post', class: "link-3" %> 
+  <% end %>
 <% end %>
  || <%= link_to 'Change password', "/auth/password_reset", method: 'post' , class: "link-3" %>
  || <%= link_to 'Go back', "/founders/home", class: "link-3" %></p>

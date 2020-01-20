@@ -8,7 +8,7 @@ class Founder < ApplicationRecord
 
   enum days_per_week: [ :one, :two, :three, :four, :five ], _suffix: true
   enum duration: [ :one, :twotothree, :fourtosix, :seventotwelve, :overtwelve  ], _suffix: true
-  enum specialisation: { fullstack: 0, frontend: 1, backend: 2, UXUI: 3, QA: 4 }
+  enum specialisation: { fullstack: 0, frontend: 1, backend: 2, UXUI: 3, QA: 4, datascience: 5 }
 
  
   DAYS_PER_WEEK_FORMATTED = {
@@ -40,7 +40,8 @@ class Founder < ApplicationRecord
     'frontend' => 'front-end',
     'backend' => 'back-end',
     'UXUI' => 'UX / UI',
-    'QA' => 'QA'      
+    'QA' => 'QA',
+    'datascience' => 'data science'     
   }    
 
   def specialisation_formatted
