@@ -111,7 +111,7 @@
 
         <div class="container-1">
           <% @founder.tech_breakdowns.each do |tech_breakdown| %>
-            <% unless tech_breakdown.name.empty? %>
+            <% if tech_breakdown.name.present? %>
               <div class="flex-container-form-row">
                 <div class="p-left-form">
                   <%= tech_breakdown.name %>
