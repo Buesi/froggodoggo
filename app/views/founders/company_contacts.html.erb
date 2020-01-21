@@ -2,77 +2,80 @@
 
 <div class="flex-container-10">
   <div class="flex-container-9-4">
-    <div class="flex-container-12-2">
+    <% if @all_contacts.present? %>
+      <div class="flex-container-12-2">
+        <% @all_contacts.each do |contact| %>
 
-      <% @all_contacts.each do |contact| %>
+          <div class="flex-container-12-3">
+            <div class="flex-container-center-image">
+              <div><%= image_tag contact.company.user.profile_picture.url , :class => 'profile-founder-list' %></div>
+            </div>
 
-        <div class="flex-container-12-3">
-          <div class="flex-container-center-image">
-            <div><%= image_tag contact.company.user.profile_picture.url , :class => 'profile-founder-list' %></div>
+            <div class="flex-container-12-2">
+              <div class="flex-container-show-row">
+                <div class="p-left-form">
+                  <p><strong>Name:</strong></p>
+                </div>
+                <div class="p-left-show-right">
+                  <p><%= contact.company.user.name %> <%= contact.company.user.surname%></p>
+                </div>
+              </div>
+              <div class="flex-container-show-row">
+                <div class="p-left-form">
+                  <p><strong>E-mail:</strong></p>
+                </div>
+                <div class="p-left-show-right">
+                  <p><%= contact.company.user.email %></p>
+                </div>
+              </div>
+              <div class="flex-container-show-row">
+                <div class="p-left-form">
+                  <p><strong>Company:</strong></p>
+                </div>
+                <div class="p-left-show-right">
+                  <p><%= contact.company.company %></p>
+                </div>
+              </div>
+              <div class="flex-container-show-row">
+                <div class="p-left-form">
+                  <p><strong>Website:</strong></p>
+                </div>
+                <div class="p-left-show-right">
+                  <% if contact.company.website.present? %>
+                    <%= link_to contact.company.website, contact.company.website, :class => "link-3"  %></p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="flex-container-show-row">
+                <div class="p-left-form">
+                  <p><strong>Contacted:</strong></p>
+                </div>
+                <div class="p-left-show-right">
+                  <p><%= contact.created_at.strftime("%d %b. %Y") %></p>
+                </div>
+              </div>
+              <div class="flex-container-show-row">
+                <div class="p-left-form">
+                  <p><strong>Status:</strong></p>
+                </div>
+                <div class="p-left-show-right">
+                  <% if contact.hire_status == 'hired' %>
+                    <p>Congrats, you've been hired!</p>
+                  <% elsif contact.hire_status == 'declined' %>
+                    <p>They've decided not to hire you.</p>
+                  <% else %>
+                    <p>They are interested in getting to know you and will contact you shortly.</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="flex-container-12-2">
-            <div class="flex-container-show-row">
-              <div class="p-left-form">
-                <p><strong>Name:</strong></p>
-              </div>
-              <div class="p-left-show-right">
-                <p><%= contact.company.user.name %> <%= contact.company.user.surname%></p>
-              </div>
-            </div>
-            <div class="flex-container-show-row">
-              <div class="p-left-form">
-                <p><strong>E-mail:</strong></p>
-              </div>
-              <div class="p-left-show-right">
-                <p><%= contact.company.user.email %></p>
-              </div>
-            </div>
-            <div class="flex-container-show-row">
-              <div class="p-left-form">
-                <p><strong>Company:</strong></p>
-              </div>
-              <div class="p-left-show-right">
-                <p><%= contact.company.company %></p>
-              </div>
-            </div>
-            <div class="flex-container-show-row">
-              <div class="p-left-form">
-                <p><strong>Website:</strong></p>
-              </div>
-              <div class="p-left-show-right">
-                <% if contact.company.website.present? %>
-                  <%= link_to contact.company.website, contact.company.website, :class => "link-3"  %></p>
-                <% end %>
-              </div>
-            </div>
-            <div class="flex-container-show-row">
-              <div class="p-left-form">
-                <p><strong>Contacted:</strong></p>
-              </div>
-              <div class="p-left-show-right">
-                <p><%= contact.created_at.strftime("%d %b. %Y") %></p>
-              </div>
-            </div>
-            <div class="flex-container-show-row">
-              <div class="p-left-form">
-                <p><strong>Status:</strong></p>
-              </div>
-              <div class="p-left-show-right">
-                <% if contact.hire_status == 'hired' %>
-                  <p>Congrats, you've been hired!</p>
-                <% elsif contact.hire_status == 'declined' %>
-                  <p>They've decided not to hire you.</p>
-                <% else %>
-                  <p>They are interested in getting to know you and will contact you shortly.</p>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr color = "white" width="100%" display = block margin = 0 padding = 0>
-      <% end %>
-    </div>
+          <hr color = "white" width="100%" display = block margin = 0 padding = 0>
+        <% end %>
+      </div>
+    <% else %>
+      <h2>You don't have any company contacts yet.</h2>
+    <% end %>
   </div>
 </div>
 
