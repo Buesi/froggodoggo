@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   #create new founder as an admin
   get 'founders/new_admin' => 'founders#new_admin'
   post 'founders/new_admin' => 'founders#create_admin'
+  get 'founders/review_admin' => 'founders#review_admin'
+  post 'founders/review_admin_accepted' => 'founders#review_admin_accepted'
   post 'founders/publish' => 'founders#publish'
   # get 'founders/(:id)/payment_overview' => 'founders#payment_overview'
   # get 'founders/(:id)/payment_settings' => 'founders#payment_settings'

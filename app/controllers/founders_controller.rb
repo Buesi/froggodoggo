@@ -1,7 +1,7 @@
 class FoundersController < ApplicationController
   before_action :logged_in_using_omniauth?
   before_action :founder_only, except: [:index_anonymous, :show_anonymous, :show, :new_admin, :create_admin]
-  before_action :admin_only, only: [:new_admin, :create_admin]
+  before_action :admin_only, only: [:new_admin, :create_admin, :review_admin]
 
   def new_admin #make admin only
   end
@@ -25,6 +25,42 @@ class FoundersController < ApplicationController
     tech_breakdown.save
 
     redirect_to "/founders/new_admin"
+  end
+
+  def review_admin
+    @unreviewed_entries = UnreviewedFounderEntry.where(review_status: 0).all
+  end
+
+  def review_admin_accepted
+    url = Rack::Utils.parse_query URI(request.original_url).query 
+    reviewed_founder_id = url["reviewed_founder_id"]
+    puts 'bügisens'
+    puts reviewed_founder_id
+    founder = Founder.where(id: reviewed_founder_id).last
+    unreviewed_founder_entries = UnreviewedFounderEntry.where(review_status: 0, founder_id: reviewed_founder_id).last
+   
+    if unreviewed_founder_entries.company_description.present?
+       founder.company_description = unreviewed_founder_entries.company_description 
+    end
+    if unreviewed_founder_entries.done_so_far.present?
+       founder.done_so_far = unreviewed_founder_entries.done_so_far 
+    end
+    if unreviewed_founder_entries.cool_work.present?
+       founder.cool_work = unreviewed_founder_entries.cool_work 
+    end
+    if unreviewed_founder_entries.impressive_build.present?
+       founder.impressive_build = unreviewed_founder_entries.impressive_build 
+    end
+    if unreviewed_founder_entries.important_in_5years.present?
+       founder.important_in_5years = unreviewed_founder_entries.important_in_5years 
+    end
+
+    founder.save
+    unreviewed_founder_entries.review_status = "accepted"
+    unreviewed_founder_entries.save
+
+    redirect_to "/founders/review_admin"
+
   end
 
   def index_anonymous

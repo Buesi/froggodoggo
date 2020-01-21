@@ -1,0 +1,61 @@
+<h1>Review founder entries</h1>
+<div class="flex-container-10">
+  <div class="flex-container-9-4">
+    <div class="flex-container-12-1">
+      <% @unreviewed_entries.each do |review| %>
+          <div class="flex-container-form-column">
+            <div class="p-left">
+              <p><strong>Founder:</strong></p>
+            </div>
+            <div class="p-left">
+              <p><%= review.founder_id %></p>
+            </div>
+          </div>
+          <div class="flex-container-form-column">
+            <div class="p-left">
+              <p><strong>Company description:</strong></p>
+            </div>
+            <div class="p-left">
+              <p><%= review.company_description %></p>
+            </div>
+          </div>
+          <div class="flex-container-form-column">
+            <div class="p-left">
+              <p><strong>Done so far:</strong></p>
+            </div>
+            <div class="p-left">
+              <p><%= review.done_so_far %></p>
+            </div>
+          </div>
+          <div class="flex-container-form-column">
+            <div class="p-left">
+              <p><strong>Cool work:</strong></p>
+            </div>
+            <div class="p-left">
+              <p><%= review.cool_work %></p>
+            </div>
+          </div>
+          <div class="flex-container-form-column">
+            <div class="p-left">
+              <p><strong>Impressive build:</strong></p>
+            </div>
+            <div class="p-left">
+              <p><%= review.impressive_build %></p>
+            </div>
+          </div>
+          <div class="flex-container-form-column">
+            <div class="p-left">
+              <p><strong>Important in 5 years:</strong></p>
+            </div>
+            <div class="p-left">
+              <p><%= review.important_in_5years %></p>
+            </div>
+          </div>
+          <%= form_tag("/founders/review_admin_accepted?reviewed_founder_id=#{review.founder_id}") do %>
+            <%= submit_tag 'Accept founder entries', :class => 'button' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
