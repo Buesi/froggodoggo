@@ -34,8 +34,6 @@ class FoundersController < ApplicationController
   def review_admin_accepted
     url = Rack::Utils.parse_query URI(request.original_url).query 
     reviewed_founder_id = url["reviewed_founder_id"]
-    puts 'bügisens'
-    puts reviewed_founder_id
     founder = Founder.where(id: reviewed_founder_id).last
     unreviewed_founder_entries = UnreviewedFounderEntry.where(review_status: 0, founder_id: reviewed_founder_id).last
    
