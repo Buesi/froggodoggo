@@ -1,7 +1,7 @@
 class FoundersController < ApplicationController
   before_action :logged_in_using_omniauth?
   before_action :founder_only, except: [:index_anonymous, :show_anonymous, :show, :new_admin, :create_admin]
-  before_action :admin_only, only: [:new_admin, :create_admin, :review_admin]
+  before_action :admin_only, only: [:new_admin, :create_admin, :review_admin, :review_admin_accepted]
 
   def new_admin #make admin only
   end
@@ -141,8 +141,8 @@ class FoundersController < ApplicationController
     @user = User.where(id: @founder.user_id).last
     @profile_pic = ProfilePicture.where(id: @user.profile_picture_id).last
     @entry = UnreviewedFounderEntry.where(founder_id: @founder_id, review_status: 0).last
-    tech = TechBreakdown.where(founder_id: @founder_id).all
-    
+    tech = TechBreakdown.where(founder_id: @founder_id).all #sort by id!!!
+
     tech_breakdown_present = false
     tech.each do |t|
       if t.name.present? and t.proficiency.present? and t.experience.present?

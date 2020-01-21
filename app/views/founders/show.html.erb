@@ -96,7 +96,7 @@
       </div>
       <div class="flex-container-form-column">
         <div class="p-left">
-          <p><strong>What are your top 5 tech skills?</strong></p>
+          <p><strong>What are your top tech skills?</strong></p>
         </div>
 
         <div class="flex-container-form-row">
@@ -107,17 +107,19 @@
 
         <div class="container-1">
           <% @founder.tech_breakdowns.each do |tech_breakdown| %>
-            <div class="flex-container-form-row">
-              <div class="p-left-form">
-                <%= tech_breakdown.name %>
+            <% unless tech_breakdown.name.empty? %>
+              <div class="flex-container-form-row">
+                <div class="p-left-form">
+                  <%= tech_breakdown.name %>
+                </div>
+                <div class="p-left-form">
+                  <%= tech_breakdown.proficiency %>
+                </div>
+                <div class="p-left-form">
+                  <%= tech_breakdown.experience %>
+                </div>
               </div>
-              <div class="p-left-form">
-                <%= tech_breakdown.proficiency %>
-              </div>
-              <div class="p-left-form">
-                <%= tech_breakdown.experience %>
-              </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
       </div>

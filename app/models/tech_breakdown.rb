@@ -5,4 +5,6 @@ class TechBreakdown < ApplicationRecord
 
   enum proficiency: { low: 0, medium: 1, high: 2 }
 
+  default_scope { order(id: :asc) }
+
 end
