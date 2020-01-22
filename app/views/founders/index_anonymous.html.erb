@@ -56,7 +56,7 @@
               </div>
               <div class="p-left-show-right">
                 <% founder.tech_breakdowns.each do |tech_breakdown| %>
-                  <% unless tech_breakdown.name.empty? %>
+                  <% if tech_breakdown.name.present? %>
                     <% concat ('/') if founder.tech_breakdowns.first != tech_breakdown %>
                     <%= tech_breakdown.name %>
                   <% end %>
