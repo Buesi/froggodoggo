@@ -4,12 +4,105 @@
     <div class="flex-container-12-1">
       <% @unreviewed_entries.each do |review| %>
         <div class="flex-container-form-column">
+          <% pic_id = review.founder.user.profile_picture_id %>
+          <% pic = @profile_pictures.where(id: pic_id).last %>
+          <% pic_url = pic.url %>
+          <div><%= image_tag pic_url , :class => 'icon' %></div>
+        </div>
+        <div class="flex-container-form-column">
           <div class="p-left">
             <p><strong>Founder:</strong></p>
           </div>
           <div class="p-left">
             <p><%= review.founder_id %></p>
           </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Name:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.user.name %>
+            <%= review.founder.user.surname %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Email:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.user.email %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Company:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.company %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Website:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.website %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Github:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.github %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Days per week:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.days_per_week %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Duration:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.duration %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Speciality:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.specialisation %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Years in software:</strong></p>
+          </div>
+          <div class="p-left">
+            <p><%= review.founder.years_in_software %></p>
+          </div>
+        </div>
+        <div class="flex-container-form-column">
+          <div class="p-left">
+            <p><strong>Tech:</strong></p>
+          </div>
+          <% review.founder.tech_breakdowns.each do |tech_breakdown| %>
+            <% if tech_breakdown.name.present? %>
+              <div class="flex-container-form-row">
+                <div class="p-left-form">
+                  <%= tech_breakdown.name %>, <%= tech_breakdown.proficiency %>, <%= tech_breakdown.experience %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
         <div class="flex-container-form-column">
           <div class="p-left">

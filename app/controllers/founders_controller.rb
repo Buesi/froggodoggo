@@ -29,6 +29,7 @@ class FoundersController < ApplicationController
 
   def review_admin
     @unreviewed_entries = UnreviewedFounderEntry.where(review_status: 0).all
+    @profile_pictures = ProfilePicture.order("color DESC").all
   end
 
   def review_admin_accepted
