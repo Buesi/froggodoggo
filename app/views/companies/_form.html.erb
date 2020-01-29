@@ -37,6 +37,10 @@
           <%= user_field.hidden_field :id, :value => @company.user.id %>   
 
         <% end %>
+        <div class="flex-container-form-column">
+          <p><strong>Based in (Country):</strong></p>
+          <%= form.text_field :based_in, :class => "form-field" %>
+        </div>
 
         <div class="flex-container-form-column">
           <p><strong>Company:</strong></p>
@@ -47,6 +51,7 @@
           <p><strong>Website:</strong></p>
           <%= form.url_field :website, :class => "form-field" %>
         </div>
+
       </div>
     </div>
   </div>

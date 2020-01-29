@@ -6,7 +6,8 @@
           <div class="p-center"><%= link_to 'Speciality', "?sort=specialisation&direc=#{@direc}", class: "link-3" %>
         || <%= link_to 'Years in software', "?sort=years_in_software&direc=#{@direc}", class: "link-3" %>
         || <%= link_to 'Availability', "?sort=days_per_week&direc=#{@direc}", class: "link-3" %>
-        || <%= link_to 'Duration', "?sort=duration&direc=#{@direc}", class: "link-3" %></div>
+        || <%= link_to 'Duration', "?sort=duration&direc=#{@direc}", class: "link-3" %>
+        || <%= link_to 'Based in', "?sort=based_in&direc=#{@direc}", class: "link-3" %></div>
    
     <div class="flex-container-12-2">
       <% @founders.each do |founder| %>
@@ -64,6 +65,15 @@
               </div>
             </div>
             
+            <div class="flex-container-show-row">
+              <div class="p-left-form">
+                <p><strong>Based in:</strong></p>
+              </div>
+              <div class="p-left-show-right">
+                <p><%= founder.based_in %></p>
+              </div>
+            </div>
+
             <div class="p-left-form"><%= link_to '>> Show profile <<', "founders/#{founder.id}/connected", class: "link-3" %></div>
           </div>
         </div>

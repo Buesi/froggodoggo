@@ -97,6 +97,13 @@ class FoundersController < ApplicationController
         elsif @direc == 'DESC'
           @direc = 'ASC'
         end   
+    when "based_in"
+      @founders = public_founders.order("based_in #{@direc}").all
+        if @direc == 'ASC'     
+          @direc = 'DESC'      
+        elsif @direc == 'DESC'
+          @direc = 'ASC'
+        end   
     else
       @founders = public_founders.all 
       @direc = 'ASC'
@@ -261,7 +268,7 @@ class FoundersController < ApplicationController
     end
 
     # all anyways private columns (like user name) and the oney that show up in the anonymous profile but can't contain any secret information can be updated instantly
-    if @founder.update(founder_params.slice(:days_per_week, :duration, :specialisation, :years_in_software, :qf_cat_dog, :qf_thrones_breaking, :qf_jungle, :qf_belt_susp, :company, :website, :github, :user_attributes, :tech_breakdowns_attributes))
+    if @founder.update(founder_params.slice(:days_per_week, :duration, :specialisation, :years_in_software, :qf_cat_dog, :qf_thrones_breaking, :qf_jungle, :qf_belt_susp, :based_in, :company, :website, :github, :user_attributes, :tech_breakdowns_attributes))
       redirect_to "/founders/profile"
     else
       render 'edit'
@@ -304,6 +311,6 @@ class FoundersController < ApplicationController
 
   private
     def founder_params
-      params.require(:founder).permit(:profile_pic, :days_per_week, :duration, :specialisation, :company_description, :done_so_far, :cool_work, :impressive_build, :important_in_5years, :years_in_software, :qf_cat_dog, :qf_thrones_breaking, :qf_jungle, :qf_belt_susp, :company, :website, :github, user_attributes: [:id, :name, :surname, :email], tech_breakdowns_attributes: [:id, :name, :proficiency, :experience]) #take :role out because no update if unreviewed?????
+      params.require(:founder).permit(:profile_pic, :days_per_week, :duration, :specialisation, :company_description, :done_so_far, :cool_work, :impressive_build, :important_in_5years, :years_in_software, :qf_cat_dog, :qf_thrones_breaking, :qf_jungle, :qf_belt_susp, :based_in, :company, :website, :github, user_attributes: [:id, :name, :surname, :email], tech_breakdowns_attributes: [:id, :name, :proficiency, :experience]) #take :role out because no update if unreviewed?????
     end  
 end
