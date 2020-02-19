@@ -138,18 +138,26 @@
           <p><strong>What is not important now but will be in 5 years? *</strong></p>
           <%= form.text_area :important_in_5years, :placeholder => "Come across as genuine. For example:\nVirtual reality. I use it every day,  but many people see it as a toy, but soon it will replace the laptop for many users, change the way we socialize online for the better, and will have immense impact on improving education.", :class => "form-field", rows: 6 %>
         </div>   
-
-        <div class="flex-container-form-column">
-          <p>Before you klick save, make sure you filled in all fields and didn't mention your name or the name of your startup in the "Visible section" of your profile. Thank you :)</p>
-        </div> 
       </div>
     </div>
   </div>
 
   <div class="flex-container-18">
     <p>
-      <%= form.submit 'Save', :class => 'button' %>
+      <%= form.submit 'Save', :class => 'button', "data-popup-name" => "founder" %>
     </p>
   </div>
 
 <% end %>
+
+<div class="popup">
+    <div class="popup2">
+      <div>
+        <p>Before you click save, check again if you filled in all fields and didn't mention your name, the name of your startup, or post any links in the "visible section" of your profile. <br>🙇 Thank you 🙇 </p>
+      </div>
+      <div class="flex-container-18"> 
+        <div class="popupCloseButton">Check again</div>
+        <div class="popupFormSubmitButton">Save</div>
+      </div>
+    </div>
+</div>
